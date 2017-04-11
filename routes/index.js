@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var ip = require('ip');
-var os = require('os');
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -10,7 +9,7 @@ router.get('/', function(req, res) {
     req.connection.remoteAddress;
     
   var languages= req.headers["accept-language"];
-    var language=languages.split(',')[1];
+    var language=languages.split(',')[0];
     
     data={ IP: address,
         language: language,
