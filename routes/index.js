@@ -5,14 +5,12 @@ var os = require('os');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    var software = os.type() + " "+ os.release().split('.')[0]+"."+os.release().split('.')[1];
+    var software= req.headers['user-agent'].split(') ')[0].split(' (')[1];
     var address= req.headers['x-forwarded-for'] ||
-    req.connection.remoteAddress ||
-    req.socket.remoteAddress ||
-    req.connection.socket.remoteAddress;
+    req.connection.remoteAddress;
     
   var languages= req.headers["accept-language"];
-    var language=languages.split(',')[0];
+    var language=languages.split(',')[1];
     
     data={ IP: address,
         language: language,
